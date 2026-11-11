@@ -60,7 +60,7 @@ jobs:
           s = s.replace("if(ANDROID AND PES_ARMV82)", "if((ANDROID OR IOS) AND PES_ARMV82)")
           s = s.replace("target_link_options(pes17 PRIVATE -rdynamic)", "if(NOT APPLE)\n    target_link_options(pes17 PRIVATE -rdynamic)\nendif()")
           s = s.replace("add_subdirectory(tests)", "if(NOT IOS)\nadd_subdirectory(tests)\nendif()")
-          s = s.replace("elseif(ANDROID)", "elseif(ANDROID OR IOS)")
+          s = s.replace("elseif(ANDROID)\n    # The NDK", "elseif(ANDROID OR IOS)\n    # The NDK")
           s = s.replace(
               "if(NOT ANDROID)\n        target_link_libraries(pes17 PRIVATE Vulkan::Vulkan)",
               "if(NOT ANDROID AND NOT IOS)\n        target_link_libraries(pes17 PRIVATE Vulkan::Vulkan)")
