@@ -64,6 +64,9 @@ jobs:
           s = s.replace(
               "if(NOT ANDROID)\n        target_link_libraries(pes17 PRIVATE Vulkan::Vulkan)",
               "if(NOT ANDROID AND NOT IOS)\n        target_link_libraries(pes17 PRIVATE Vulkan::Vulkan)")
+          s = s.replace(
+              "# The two tools below are for working on the renderer, on Linux.\nif(NOT ANDROID)",
+              "# The two tools below are for working on the renderer, on Linux.\nif(NOT ANDROID AND NOT IOS)")
           open("CMakeLists.txt", "w").write(s)
           print("CMakeLists.txt patched for iOS: Vulkan via dlopen, no formal link")
           PYEOF
